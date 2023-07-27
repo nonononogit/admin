@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-import './style.css'
+import '@/styles/index.scss'
 import App from './App.vue'
 // 引入element-plus
 import ElementPlus from 'element-plus'
@@ -10,12 +10,18 @@ import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
 import 'element-plus/theme-chalk/dark/css-vars.css'
 // SVG插件
 import 'virtual:svg-icons-register'
-import gloablComponent from './components/index';
-
+import gloablComponent from './components/index'
+// 路由
+import router from './router'
+// 仓库
+import pinia from './store'
+// 路由权限
+import './permisstion'
 const app = createApp(App)
 app.use(ElementPlus, {
   locale: zhCn,
 })
 app.use(gloablComponent)
+app.use(router)
+app.use(pinia)
 app.mount('#app')
-

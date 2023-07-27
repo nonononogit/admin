@@ -18,9 +18,13 @@
     "preinstall": "node ./scripts/preinstall.js"
   },
   "dependencies": {
+    "@element-plus/icons-vue": "^2.1.0",
     "axios": "^1.4.0",
     "element-plus": "^2.3.7",
-    "vue": "^3.3.4"
+    "nprogress": "^0.2.0",
+    "pinia": "^2.1.4",
+    "vue": "^3.3.4",
+    "vue-router": "^4.2.4"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.22.7",
@@ -53,6 +57,7 @@
     "stylelint-scss": "^5.0.1",
     "typescript": "^5.0.2",
     "unplugin-auto-import": "^0.16.6",
+    "unplugin-icons": "^0.16.5",
     "unplugin-vue-components": "^0.25.1",
     "vite": "^4.4.0",
     "vite-plugin-svg-icons": "^2.0.1",
