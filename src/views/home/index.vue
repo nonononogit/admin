@@ -2,7 +2,12 @@
   <div class="home-container">
     <el-card>
       <div class="top-welcome">
-        <el-avatar :size="100" shape="circle" :src="userInfo.avatar" fit="fill"></el-avatar>
+        <el-avatar
+          :size="100"
+          shape="circle"
+          :src="userInfo.avatar"
+          fit="fill"
+        ></el-avatar>
         <div class="welcome-content">
           <h1>{{ getTime() + '，' + userInfo.name }}</h1>
           <p>运营平台</p>
@@ -16,12 +21,11 @@
 </template>
 
 <script setup lang="ts">
-import { useUserStore } from '@/store/modules/user';
-import { storeToRefs } from 'pinia';
+import { useUserStore } from '@/store/modules/user'
+import { storeToRefs } from 'pinia'
 import { getTime } from '@/utils/getTime'
 const userStore = useUserStore()
 const { userInfo } = storeToRefs(userStore)
-
 </script>
 
 <style lang="scss" scoped>

@@ -4,7 +4,12 @@
       <component :is="layoutSet.fold ? 'Fold' : 'Expand'"></component>
     </el-icon>
     <el-breadcrumb :separator-icon="ArrowRight">
-      <el-breadcrumb-item v-for="item in route.matched" v-show="item.meta.title" :key="item.path" :to="{ path: item.path }">
+      <el-breadcrumb-item
+        v-for="item in route.matched"
+        v-show="item.meta.title"
+        :key="item.path"
+        :to="{ path: item.path }"
+      >
         <el-icon>
           <component :is="item.meta.icon"></component>
         </el-icon>
@@ -27,7 +32,6 @@ const layoutSetChange = () => {
   layoutSet.fold = !layoutSet.fold
 }
 const route = useRoute()
-
 </script>
 
 <style lang="scss" scoped>
@@ -38,10 +42,10 @@ const route = useRoute()
 
   :deep(.el-breadcrumb) {
     margin-left: 10px;
-    .el-breadcrumb__inner{
+    .el-breadcrumb__inner {
       display: flex;
       align-items: center;
-      i{
+      i {
         margin-right: 3px;
       }
     }

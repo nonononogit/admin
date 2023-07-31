@@ -21,11 +21,11 @@
 </template>
 
 <script setup lang="ts">
-import { useUserStore } from '@/store/modules/user';
-import { storeToRefs } from 'pinia';
-import { useRoute, useRouter } from 'vue-router';
+import { useUserStore } from '@/store/modules/user'
+import { storeToRefs } from 'pinia'
+import { useRoute, useRouter } from 'vue-router'
 const userStore = useUserStore()
-const {userInfo} = storeToRefs(userStore)
+const { userInfo } = storeToRefs(userStore)
 const router = useRouter()
 const route = useRoute()
 const FullScreen = () => {
@@ -47,7 +47,7 @@ const logout = async () => {
   display: flex;
   justify-content: center;
   align-items: center;
-  .el-avatar{
+  .el-avatar {
     margin: 0 10px;
   }
 }

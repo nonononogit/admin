@@ -66,7 +66,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.el-menu-item:hover{
+.el-menu-item:hover {
   background-color: #dcdcf5;
 }
 </style>
