@@ -46,7 +46,8 @@ export const useUserStore = defineStore('user', {
       try {
         await user.reqLogout()
         localStorage.removeItem('token')
-        this.userInfo = Object.assign({}, initUserInfo())
+        this.token = ''
+        this.userInfo = initUserInfo()
       } catch (error) {
         ElMessage.error('退出失败，请稍后重试！')
       }

@@ -7,6 +7,7 @@
 
 <script setup lang="ts">
 import { useLayoutSet } from '@/store/modules/setting'
+// 从store中引入控制菜单折叠的变量
 const layoutSet = useLayoutSet()
 </script>
 
@@ -20,6 +21,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
   padding: 0 8px;
   height: 50px;
   img {

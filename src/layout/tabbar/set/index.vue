@@ -1,24 +1,19 @@
 <template>
   <div class="right-set">
     <el-button icon="Refresh" circle></el-button>
-    <el-button icon="FullScreen" circle></el-button>
+    <el-button icon="FullScreen" circle @click="FullScreen"></el-button>
     <el-button icon="Setting" circle></el-button>
-    <el-image
-      :src="avatar"
-      style="width: 30px; height: 30px; margin: 0 8px"
-      fit="fill"
-      :lazy="true"
-    ></el-image>
+    <el-avatar :size="30" :src="userInfo.avatar" />
     <el-dropdown>
       <span class="el-dropdown-link">
-        admin
+        {{ userInfo.name }}
         <el-icon class="el-icon--right">
           <arrow-down />
         </el-icon>
       </span>
       <template #dropdown>
         <el-dropdown-menu>
-          <el-dropdown-item>退出登录</el-dropdown-item>
+          <el-dropdown-item @click="logout">退出登录</el-dropdown-item>
         </el-dropdown-menu>
       </template>
     </el-dropdown>
@@ -26,9 +21,25 @@
 </template>
 
 <script setup lang="ts">
-import avatarImg from '@/assets/images/Color-Superman-logo.png'
-import { ref } from 'vue'
-const avatar = ref(avatarImg)
+import { useUserStore } from '@/store/modules/user';
+import { storeToRefs } from 'pinia';
+import { useRoute, useRouter } from 'vue-router';
+const userStore = useUserStore()
+const {userInfo} = storeToRefs(userStore)
+const router = useRouter()
+const route = useRoute()
+const FullScreen = () => {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen()
+  } else {
+    document.exitFullscreen()
+  }
+}
+// 退出登录
+const logout = async () => {
+  await userStore.getLogout()
+  router.push({ path: '/login', query: { redirect: route.path } })
+}
 </script>
 
 <style lang="scss" scoped>
@@ -36,5 +47,8 @@ const avatar = ref(avatarImg)
   display: flex;
   justify-content: center;
   align-items: center;
+  .el-avatar{
+    margin: 0 10px;
+  }
 }
 </style>

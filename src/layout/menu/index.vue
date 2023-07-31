@@ -50,9 +50,11 @@
 import Menu from '@/layout/menu/index.vue'
 import router from '@/router'
 import type { RouteRecordRaw } from 'vue-router'
+// 接收父组件传来的路由数组
 defineProps<{
   menuList: RouteRecordRaw[]
 }>()
+// 点击跳转至对应的路由
 const goRoute = (menuItem: any) => {
   router.push(menuItem.index)
 }
@@ -63,4 +65,8 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.el-menu-item:hover{
+  background-color: #dcdcf5;
+}
+</style>

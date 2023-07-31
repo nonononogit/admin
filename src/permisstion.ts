@@ -5,10 +5,11 @@ import { useUserStore } from './store/modules/user'
 import nprogress from 'nprogress'
 //引入进度条样式
 import 'nprogress/nprogress.css'
+import setting from './setting'
 nprogress.configure({ showSpinner: false })
 const userStore = useUserStore(pinia)
 router.beforeEach(async (to, from, next) => {
-  // document.title = `${setting.title} - ${to.meta.title}`
+  document.title = `${setting.title} - ${to.meta.title}`
   nprogress.start()
   const token = userStore.token
   const userName = userStore.userInfo.name

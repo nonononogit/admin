@@ -41,6 +41,7 @@ export const staticRoutes: RouteRecordRaw[] = [
   {
     path: '/acl',
     name: 'acl',
+    redirect:'/acl/user',
     component: () => import('@/layout/index.vue'),
     meta: {
       title: '权限管理',
@@ -151,14 +152,5 @@ export const staticRoutes: RouteRecordRaw[] = [
       hidden: true,
       icon: '',
     },
-  },
-  // {
-  //   path: '/',
-  //   redirect: '/home',
-  //   meta: {
-  //     title: '重定向',
-  //     hidden: true,
-  //     icon: '',
-  //   },
-  // },
+  }
 ]

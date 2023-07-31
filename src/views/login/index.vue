@@ -3,30 +3,17 @@
     <el-row>
       <el-col :span="12" :xs="0"></el-col>
       <el-col :span="12" :xs="24">
-        <el-form
-          class="login-form"
-          :model="loginForm"
-          ref="loginFormRef"
-          :rules="rules"
-        >
+        <el-form class="login-form" :model="loginForm" ref="loginFormRef" :rules="rules">
           <h1>Hello</h1>
           <h2>欢迎来到硅谷甄选</h2>
           <el-form-item>
-            <el-input
-              :prefix-icon="User"
-              v-model="loginForm.username"
-            ></el-input>
+            <el-input :prefix-icon="User" v-model="loginForm.username"></el-input>
           </el-form-item>
           <el-form-item>
-            <el-input
-              :prefix-icon="Lock"
-              type="password"
-              show-password
-              v-model="loginForm.password"
-            ></el-input>
+            <el-input :prefix-icon="Lock" type="password" show-password v-model="loginForm.password"></el-input>
           </el-form-item>
           <el-form-item>
-            <el-button class="login-btn" type="primary" @click="login">
+            <el-button :loading="loading" class="login-btn" type="primary" @click="login">
               登录
             </el-button>
           </el-form-item>
@@ -39,6 +26,7 @@
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
 import type { FormInstance, FormRules } from 'element-plus'
+import { ElNotification } from 'element-plus'
 import { User, Lock } from '@element-plus/icons-vue'
 import { useUserStore } from '@/store/modules/user'
 import { useRoute, useRouter } from 'vue-router'
@@ -49,6 +37,7 @@ const loginForm = ref({
   username: 'admin',
   password: 'atguigu123',
 })
+const loading = ref(false)
 // 登录表单DOM
 const loginFormRef = ref<FormInstance>()
 // 登录验证规则
@@ -63,9 +52,21 @@ const userStore = useUserStore()
 const login = () => {
   loginFormRef.value?.validate(async (valid) => {
     if (valid) {
-      await userStore.getLogin(loginForm.value)
-      let redirect = route.query.redirect as string
-      router.push({ path: redirect || '/' })
+      loading.value = true
+      await userStore.getLogin(loginForm.value).then(() => {
+        let redirect = route.query.redirect as string
+        router.push({ path: redirect || '/' })
+        ElNotification({
+          title: `欢迎回来`,
+          dangerouslyUseHTMLString: true,
+          message: '运营平台',
+          duration: 1000,
+          type: 'success'
+        })
+        loading.value = false
+      }).catch(() => {
+        loading.value = false
+      })
     }
   })
 }

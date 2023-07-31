@@ -3,6 +3,8 @@ import '@/styles/index.scss'
 import App from './App.vue'
 // 引入element-plus
 import ElementPlus from 'element-plus'
+// 引入element样式
+import 'element-plus/dist/index.css'
 //配置element-plus国际化
 //@ts-expect-error
 import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
