@@ -3,7 +3,10 @@
     <div class="left-menu" :class="{ fold: layoutSet.fold }">
       <Logo></Logo>
       <el-scrollbar>
-        <el-menu :collapse="layoutSet.fold" background-color="linear-gradient(180deg, #efeaef, #dcdcf5 99%)">
+        <el-menu
+          :collapse="layoutSet.fold"
+          background-color="linear-gradient(180deg, #efeaef, #dcdcf5 99%)"
+        >
           <Menu :menuList="userStore.menu"></Menu>
         </el-menu>
       </el-scrollbar>
@@ -35,13 +38,17 @@ const userStore = useUserStore()
 
   .left-menu {
     width: 256px;
-    background: radial-gradient(circle at 100% 0,
+    background: radial-gradient(
+        circle at 100% 0,
         #efe8eb 0,
-        rgba(239, 232, 235, 0) 33%),
+        rgba(239, 232, 235, 0) 33%
+      ),
       radial-gradient(circle at 100% 25%, #e8ebea 0, hsla(160, 7%, 92%, 0) 39%),
-      radial-gradient(circle at 100% 36%,
+      radial-gradient(
+        circle at 100% 36%,
         hsla(160, 7%, 92%, 0.6) 0,
-        hsla(160, 7%, 92%, 0) 38%),
+        hsla(160, 7%, 92%, 0) 38%
+      ),
       linear-gradient(180deg, #efeaef, #dcdcf5 99%);
     transition: all 0.3s;
 

@@ -3,11 +3,11 @@ import { defineStore } from 'pinia'
 import { AclStoreData } from './types/acl'
 import acl from '@/api/acl/user/user'
 import { ElMessage } from 'element-plus'
-export const useAclStore = defineStore('acl',{
-  state:():AclStoreData<any>=>{
+export const useAclStore = defineStore('acl', {
+  state: (): AclStoreData<any> => {
     return {
       // 用户管理分页列表数据
-      userPageList:{
+      userPageList: {
         countId: '',
         current: 1,
         hitCount: '',
@@ -21,30 +21,27 @@ export const useAclStore = defineStore('acl',{
         total: 0,
       },
       // 用户角色列表数据
-      userRoles:{
-        allRolesList:[],
-        assignRoles:[]
-      }
+      userRoles: {
+        allRolesList: [],
+        assignRoles: [],
+      },
     }
   },
-  actions:{
+  actions: {
     // 请求用户管理分页列表数据
-    async getUserPageList(page:number,limit:number,userName?:string){
+    async getUserPageList(page: number, limit: number, userName?: string) {
       try {
-        const result = await acl.reqUserPageList(page,limit,userName)
+        const result = await acl.reqUserPageList(page, limit, userName)
         this.userPageList = result
       } catch (error) {
         ElMessage.error('请求用户管理分页列表数据失败')
       }
     },
     // 请求当前用户角色列表数据
-    async getUserRoles(id:number){
+    async getUserRoles(id: number) {
       const result = await acl.reqUserRoles(id)
       this.userRoles = result
-    }
+    },
   },
-  getters:{
-
-  },
-  
+  getters: {},
 })

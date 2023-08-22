@@ -85,7 +85,7 @@ export interface UserRolesData {
   updateTime: string
 }
 // 分配角色请求参数类型
-export interface UserAssignRolesData{
-  roleIdList:Array<number>
-  userId:number
+export interface UserAssignRolesData {
+  roleIdList: Array<number>
+  userId: number
 }

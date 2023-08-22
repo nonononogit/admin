@@ -14,7 +14,7 @@ router.beforeEach(async (to, from, next) => {
   nprogress.start()
   const token = userStore.token
   const userName = userStore.userInfo.name
-  
+
   // token是否存在
   if (token) {
     // 如果已登录去登录页，则直接指向首页
