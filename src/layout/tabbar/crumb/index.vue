@@ -31,6 +31,7 @@ const layoutSet = useLayoutSet()
 const layoutSetChange = () => {
   layoutSet.fold = !layoutSet.fold
 }
+// 获取当前路由对象，给面包屑导航遍历出匹配的路由
 const route = useRoute()
 </script>
 

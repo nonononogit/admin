@@ -2,12 +2,7 @@
   <div class="home-container">
     <el-card>
       <div class="top-welcome">
-        <el-avatar
-          :size="100"
-          shape="circle"
-          :src="userInfo.avatar"
-          fit="fill"
-        ></el-avatar>
+        <el-avatar :size="100" shape="circle" :src="userInfo.avatar" fit="fill"></el-avatar>
         <div class="welcome-content">
           <h1>{{ getTime() + '，' + userInfo.name }}</h1>
           <p>运营平台</p>

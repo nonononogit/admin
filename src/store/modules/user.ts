@@ -1,3 +1,4 @@
+// 用户信息仓库
 import { defineStore } from 'pinia'
 import { UserStoreData } from './types/user'
 import user from '@/api/acl/user/user'
@@ -34,12 +35,8 @@ export const useUserStore = defineStore('user', {
     },
     // 成功获取token后，拿获取用户信息
     async getUserInfo() {
-      try {
-        const result = await user.reqUserInfo()
-        this.userInfo = result
-      } catch (error) {
-        ElMessage.error('获取用户信息失败，请稍后重试！')
-      }
+      const result = await user.reqUserInfo()
+      this.userInfo = result
     },
     // 退出登录
     async getLogout() {

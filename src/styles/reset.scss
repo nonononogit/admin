@@ -184,3 +184,16 @@ pre {
   font-family: monospace, monospace;
   font-size: 1em;
 }
+
+/* 设置滚动条的宽度和背景色 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 9px;
+  background-color: #F5F5F5;
+}
+
+/* 设置滚动条的滑块颜色和形状 */
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #e8d4e8, #9e9ed6 99%);
+  border-radius: 5px;
+}

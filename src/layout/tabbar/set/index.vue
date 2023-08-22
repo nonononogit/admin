@@ -1,7 +1,7 @@
 <template>
   <div class="right-set">
     <el-button icon="Refresh" circle></el-button>
-    <el-button icon="FullScreen" circle @click="FullScreen"></el-button>
+    <el-button icon="FullScreen" circle @click="fullScreen"></el-button>
     <el-button icon="Setting" circle></el-button>
     <el-avatar :size="30" :src="userInfo.avatar" />
     <el-dropdown>
@@ -28,7 +28,9 @@ const userStore = useUserStore()
 const { userInfo } = storeToRefs(userStore)
 const router = useRouter()
 const route = useRoute()
-const FullScreen = () => {
+// 点击全屏
+const fullScreen = () => {
+  // 如果为null，开启全屏，否则退出全屏
   if (!document.fullscreenElement) {
     document.documentElement.requestFullscreen()
   } else {

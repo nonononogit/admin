@@ -1,3 +1,4 @@
+// 根据当前小时，返回对应时段问候
 export function getTime() {
   let message = ''
   let h = new Date().getHours()

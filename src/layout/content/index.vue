@@ -20,7 +20,7 @@ export default {
   height: calc(100vh - 50px);
   background-color: azure;
 }
-
+// 路由切换动画
 .fade-enter-active,
 .fade-leave-active {
   transition: all 0.5s;

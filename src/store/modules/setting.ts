@@ -1,3 +1,4 @@
+// 设置菜单栏仓库
 import { defineStore } from 'pinia'
 interface LayoutSetData {
   fold: boolean

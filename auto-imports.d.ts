@@ -6,6 +6,8 @@
 export {}
 declare global {
   const EffectScope: typeof import('vue')['EffectScope']
+  const ElMessage: typeof import('element-plus/es')['ElMessage']
+  const ElMessageBox: typeof import('element-plus/es')['ElMessageBox']
   const ElNotification: typeof import('element-plus/es')['ElNotification']
   const computed: typeof import('vue')['computed']
   const createApp: typeof import('vue')['createApp']
@@ -62,13 +64,5 @@ declare global {
 // for type re-export
 declare global {
   // @ts-ignore
-  export type {
-    Component,
-    ComponentPublicInstance,
-    ComputedRef,
-    InjectionKey,
-    PropType,
-    Ref,
-    VNode,
-  } from 'vue'
+  export type { Component, ComponentPublicInstance, ComputedRef, InjectionKey, PropType, Ref, VNode } from 'vue'
 }

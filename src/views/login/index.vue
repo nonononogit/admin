@@ -3,35 +3,17 @@
     <el-row>
       <el-col :span="12" :xs="0"></el-col>
       <el-col :span="12" :xs="24">
-        <el-form
-          class="login-form"
-          :model="loginForm"
-          ref="loginFormRef"
-          :rules="rules"
-        >
+        <el-form class="login-form" :model="loginForm" ref="loginFormRef" :rules="rules">
           <h1>Hello</h1>
           <h2>欢迎来到硅谷甄选</h2>
           <el-form-item>
-            <el-input
-              :prefix-icon="User"
-              v-model="loginForm.username"
-            ></el-input>
+            <el-input :prefix-icon="User" v-model="loginForm.username"></el-input>
           </el-form-item>
           <el-form-item>
-            <el-input
-              :prefix-icon="Lock"
-              type="password"
-              show-password
-              v-model="loginForm.password"
-            ></el-input>
+            <el-input :prefix-icon="Lock" type="password" show-password v-model="loginForm.password"></el-input>
           </el-form-item>
           <el-form-item>
-            <el-button
-              :loading="loading"
-              class="login-btn"
-              type="primary"
-              @click="login"
-            >
+            <el-button :loading="loading" class="login-btn" type="primary" @click="login">
               登录
             </el-button>
           </el-form-item>
@@ -71,9 +53,7 @@ const login = () => {
   loginFormRef.value?.validate(async (valid) => {
     if (valid) {
       loading.value = true
-      await userStore
-        .getLogin(loginForm.value)
-        .then(() => {
+      await userStore.getLogin(loginForm.value).then(() => {
           let redirect = route.query.redirect as string
           router.push({ path: redirect || '/' })
           ElNotification({
