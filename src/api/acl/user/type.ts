@@ -1,5 +1,5 @@
 // 地址
-export enum AclApi {
+export enum UserApi {
   // 用户登录
   LOGIN_URL = '/admin/acl/index/login',
   // 获取用户信息
@@ -52,14 +52,15 @@ export interface ResUserPageData<T> {
 }
 // 用户管理分页列表数据中records属性值类型
 export interface RecordsData {
-  createTime: string
-  id: number | string
-  name: string
-  password: string
-  phone: null | string
+  createTime?: string
+  id?: number | string
+  name?: string
+  password?: string
+  phone?: null | string
   roleName: string
-  updateTime: string
-  username: string
+  updateTime?: string
+  username?: string
+  remark?:string | null
 }
 // 添加或修改用户参数类型
 export interface ReqAddOrUpdateUser {
