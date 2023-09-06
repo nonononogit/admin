@@ -10,7 +10,7 @@ export enum RoleApi {
   // 获取用户权限
   ROLEPERMISSION_URL = '/admin/acl/permission/toAssign',
   // 分配角色权限
-  ASSINGROLESPERMISSION_URL='/admin/acl/permission/doAssign?',
+  ASSINGROLESPERMISSION_URL = '/admin/acl/permission/doAssign?',
   // 删除职位
   DELETEROLE_URL = '/admin/acl/role/remove',
 }
@@ -23,14 +23,14 @@ export interface ResRolePermissionData {
   children: ResRolePermissionListData
   code: null | string
   createTime: string
-  id: number 
-  level: number 
+  id: number
+  level: number
   name: string
-  pid: number 
+  pid: number
   select: boolean
   status: null | string
   toCode: null | string
-  type: number 
+  type: number
   updateTime: string
 }
 export type ResRolePermissionListData = ResRolePermissionData[]

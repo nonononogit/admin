@@ -6,29 +6,91 @@
     <el-card class="bottom-card">
       <div class="btn">
         <el-button type="primary" @click="addOrUpdateUser">添加用户</el-button>
-        <el-button type="primary" :disabled="!userArr.length" @click="deleteBatchUser">
+        <el-button
+          type="primary"
+          :disabled="!userArr.length"
+          @click="deleteBatchUser"
+        >
           批量删除
         </el-button>
       </div>
-      <el-table class="table" :data="userPageList.records" border ref="multipleTableRef"
-        @selection-change="handleSelectionChange">
+      <el-table
+        class="table"
+        :data="userPageList.records"
+        border
+        ref="multipleTableRef"
+        @selection-change="handleSelectionChange"
+      >
         <el-table-column align="center" type="selection" width="50" />
-        <el-table-column align="center" type="index" label="#" width="50"></el-table-column>
-        <el-table-column align="center" prop="id" label="ID" width="80"></el-table-column>
-        <el-table-column align="center" prop="username" label="用户名字" width="" show-overflow-tooltip></el-table-column>
-        <el-table-column align="center" prop="name" label="用户名称" width="" show-overflow-tooltip></el-table-column>
-        <el-table-column align="center" prop="roleName" label="用户角色" width="" show-overflow-tooltip></el-table-column>
-        <el-table-column align="center" prop="createTime" label="创建时间" width="" show-overflow-tooltip></el-table-column>
-        <el-table-column align="center" prop="updateTime" label="更新时间" width="" show-overflow-tooltip></el-table-column>
+        <el-table-column
+          align="center"
+          type="index"
+          label="#"
+          width="50"
+        ></el-table-column>
+        <el-table-column
+          align="center"
+          prop="id"
+          label="ID"
+          width="80"
+        ></el-table-column>
+        <el-table-column
+          align="center"
+          prop="username"
+          label="用户名字"
+          width=""
+          show-overflow-tooltip
+        ></el-table-column>
+        <el-table-column
+          align="center"
+          prop="name"
+          label="用户名称"
+          width=""
+          show-overflow-tooltip
+        ></el-table-column>
+        <el-table-column
+          align="center"
+          prop="roleName"
+          label="用户角色"
+          width=""
+          show-overflow-tooltip
+        ></el-table-column>
+        <el-table-column
+          align="center"
+          prop="createTime"
+          label="创建时间"
+          width=""
+          show-overflow-tooltip
+        ></el-table-column>
+        <el-table-column
+          align="center"
+          prop="updateTime"
+          label="更新时间"
+          width=""
+          show-overflow-tooltip
+        ></el-table-column>
         <el-table-column align="center" prop="" label="操作" width="300">
           <template #default="scoped">
-            <el-button :icon="User" type="primary" size="small" @click="assignRoles(scoped.row)">
+            <el-button
+              :icon="User"
+              type="primary"
+              size="small"
+              @click="assignRoles(scoped.row)"
+            >
               分配角色
             </el-button>
-            <el-button :icon="Edit" type="warning" size="small" @click="addOrUpdateUser(scoped.row)">
+            <el-button
+              :icon="Edit"
+              type="warning"
+              size="small"
+              @click="addOrUpdateUser(scoped.row)"
+            >
               编辑
             </el-button>
-            <el-popconfirm :title="`确定删除${scoped.row?.username}吗?`" @confirm="confirmDelete(scoped.row?.id)">
+            <el-popconfirm
+              :title="`确定删除${scoped.row?.username}吗?`"
+              @confirm="confirmDelete(scoped.row?.id)"
+            >
               <template #reference>
                 <el-button :icon="Delete" type="danger" size="small">
                   删除
@@ -38,11 +100,21 @@
           </template>
         </el-table-column>
       </el-table>
-      <el-pagination background v-model:current-page="currentPage" v-model:page-size="pageSize" :page-sizes="[5, 10, 15]"
-        layout="prev, pager, next, jumper,->,sizes,total" :total="userPageList.total" @size-change="handleSizeChange"
-        @current-change="getPageList" />
+      <el-pagination
+        background
+        v-model:current-page="currentPage"
+        v-model:page-size="pageSize"
+        :page-sizes="[5, 10, 15]"
+        layout="prev, pager, next, jumper,->,sizes,total"
+        :total="userPageList.total"
+        @size-change="handleSizeChange"
+        @current-change="getPageList"
+      />
     </el-card>
-    <AddOrUpdateUser ref="addOrUpdateUserRef" :updateUser="updateUser"></AddOrUpdateUser>
+    <AddOrUpdateUser
+      ref="addOrUpdateUserRef"
+      :updateUser="updateUser"
+    ></AddOrUpdateUser>
     <AssignRoles ref="assignRolesRef" :currentUser="currentUser"></AssignRoles>
   </div>
 </template>
@@ -86,7 +158,7 @@ const handleSelectionChange = (value: ReqAddOrUpdateUser[]) => {
   userArr.value = value
 }
 // 获取分页列表数据
-const getPageList = (page = 1)=>{
+const getPageList = (page = 1) => {
   currentPage.value = page
   aclStore.getUserPageList(currentPage.value, pageSize.value, 'user')
 }
@@ -103,7 +175,11 @@ const addOrUpdateUser = (row?: ReqAddOrUpdateUser) => {
 const confirmDelete = async (id: number) => {
   await aclApi.reqDeleteSingleUser(id)
   ElMessage.success('删除成功')
-  getPageList(userPageList.value.records.length < 1? currentPage.value - 1: currentPage.value,)
+  getPageList(
+    userPageList.value.records.length < 1
+      ? currentPage.value - 1
+      : currentPage.value,
+  )
 }
 // 批量删除
 const deleteBatchUser = () => {
@@ -119,7 +195,11 @@ const deleteBatchUser = () => {
         type: 'success',
         message: '删除成功',
       })
-      getPageList(userPageList.value.records.length < 1? currentPage.value - 1: currentPage.value,)
+      getPageList(
+        userPageList.value.records.length < 1
+          ? currentPage.value - 1
+          : currentPage.value,
+      )
     })
     .catch(() => {
       ElMessage({

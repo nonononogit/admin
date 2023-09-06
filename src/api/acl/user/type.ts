@@ -60,7 +60,7 @@ export interface RecordsData {
   roleName: string
   updateTime?: string
   username?: string
-  remark?:string | null
+  remark?: string | null
 }
 // 添加或修改用户参数类型
 export interface ReqAddOrUpdateUser {

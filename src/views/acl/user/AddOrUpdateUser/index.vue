@@ -1,6 +1,11 @@
 <template>
-  <el-drawer ref="drawerRef" v-model="dialog" :title="addOrUpdateUserForm.id ? '修改用户' : '添加用户'" direction="rtl"
-    class="demo-drawer">
+  <el-drawer
+    ref="drawerRef"
+    v-model="dialog"
+    :title="addOrUpdateUserForm.id ? '修改用户' : '添加用户'"
+    direction="rtl"
+    class="demo-drawer"
+  >
     <div class="demo-drawer__content">
       <el-form :model="addOrUpdateUserForm" :rules="rules" ref="ruleFormRef">
         <el-form-item label="用户姓名" prop="name">
@@ -9,7 +14,11 @@
         <el-form-item label="用户昵称" prop="username">
           <el-input v-model="addOrUpdateUserForm.username" />
         </el-form-item>
-        <el-form-item label="用户密码" prop="password" v-if="!addOrUpdateUserForm.id">
+        <el-form-item
+          label="用户密码"
+          prop="password"
+          v-if="!addOrUpdateUserForm.id"
+        >
           <el-input v-model="addOrUpdateUserForm.password" />
         </el-form-item>
       </el-form>

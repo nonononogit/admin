@@ -48,7 +48,9 @@ export default {
   },
   // 批量删除用户
   reqDeleteBatchUser(idArr: Array<Number>) {
-    return request.delete<any, any>(UserApi.DELETEBATCHUSER_URL, { data: idArr })
+    return request.delete<any, any>(UserApi.DELETEBATCHUSER_URL, {
+      data: idArr,
+    })
   },
   // 请求用户当前角色
   reqUserRoles(id: number) {

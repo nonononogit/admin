@@ -6,11 +6,22 @@
           <el-input disabled :value="currentUser.username" />
         </el-form-item>
         <el-form-item label="职位列表">
-          <el-checkbox :model-value="checkAll" :indeterminate="isIndeterminate" @change="handleCheckAllChange">
+          <el-checkbox
+            :model-value="checkAll"
+            :indeterminate="isIndeterminate"
+            @change="handleCheckAllChange"
+          >
             全选
           </el-checkbox>
-          <el-checkbox-group v-model="checkedRoles" @change="handleCheckedRoleChange">
-            <el-checkbox v-for="item in userRoles.allRolesList" :key="item.id" :label="item">
+          <el-checkbox-group
+            v-model="checkedRoles"
+            @change="handleCheckedRoleChange"
+          >
+            <el-checkbox
+              v-for="item in userRoles.allRolesList"
+              :key="item.id"
+              :label="item"
+            >
               {{ item.roleName }}
             </el-checkbox>
           </el-checkbox-group>
@@ -43,7 +54,11 @@ const checkAll = computed(
   () => checkedRoles.value.length === userRoles.value.allRolesList.length,
 )
 // 不确定状态（多选框中的-）
-const isIndeterminate = computed(() => (checkedRoles.value.length !== userRoles.value.allRolesList.length) && (checkedRoles.value.length > 0))
+const isIndeterminate = computed(
+  () =>
+    checkedRoles.value.length !== userRoles.value.allRolesList.length &&
+    checkedRoles.value.length > 0,
+)
 // 点击全选
 const handleCheckAllChange = (val: boolean) => {
   checkedRoles.value = val ? userRoles.value.allRolesList : []
@@ -65,7 +80,7 @@ const assignRoles = async () => {
   aclStore.getUserPageList(
     props.currentUser.currentPage,
     props.currentUser.pageSize,
-    'user'
+    'user',
   )
 }
 // 监听用户角色，初始化展示
