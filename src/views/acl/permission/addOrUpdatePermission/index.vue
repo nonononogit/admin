@@ -20,10 +20,10 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref, watch } from 'vue';
+import { reactive, ref, watch } from 'vue'
 import permissionApi from '@/api/acl/permission/permission'
-import { ElMessage } from 'element-plus';
-import { usePermissionStore } from '@/store/modules/permission';
+import { ElMessage } from 'element-plus'
+import { usePermissionStore } from '@/store/modules/permission'
 // 获取菜单仓库
 const permissionStore = usePermissionStore()
 // 控制dialog的参考值
@@ -40,23 +40,27 @@ const confirmAddOrUpdatePermission = async () => {
   // 先将表单的数据与父组件传过来的数据合并，然后发请求
   let data = Object.assign(props.currentPermission, form)
   await permissionApi.reqAddOrUpdatePermission(data)
-  ElMessage.success(data.id?'修改菜单成功':'添加菜单成功')
+  ElMessage.success(data.id ? '修改菜单成功' : '添加菜单成功')
   permissionStore.getPremission()
   dialogFormVisible.value = false
 }
-watch(() => props.currentPermission, () => {
-  // 监听父组件传过来的数据，判断是添加还是更新菜单
-  if (props.currentPermission.id) {
-    form.name = props.currentPermission.name
-    form.code = props.currentPermission.code
-  } else {
-    // 如果是添加菜单，则初始化表单数据
-    form.name = ''
-    form.code = ''
-  }
-}, { deep: true })
+watch(
+  () => props.currentPermission,
+  () => {
+    // 监听父组件传过来的数据，判断是添加还是更新菜单
+    if (props.currentPermission.id) {
+      form.name = props.currentPermission.name
+      form.code = props.currentPermission.code
+    } else {
+      // 如果是添加菜单，则初始化表单数据
+      form.name = ''
+      form.code = ''
+    }
+  },
+  { deep: true },
+)
 defineExpose({
-  dialogFormVisible
+  dialogFormVisible,
 })
 </script>
 

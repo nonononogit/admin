@@ -17,5 +17,5 @@ export const usePermissionStore = defineStore('permission', {
       this.permissionList = result
     },
   },
-  getters: {}
+  getters: {},
 })

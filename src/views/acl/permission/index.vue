@@ -7,11 +7,27 @@
         <el-table-column prop="updateTime" label="修改时间" />
         <el-table-column label="操作 ">
           <template #="{ row }">
-            <el-button v-if="row.level < 4" type="primary" size="small" @click="addOrUpdatePermission(row, 'add')">{{
-              row.level > 2 ? '添加功能' : '添加菜单' }}</el-button>
-            <el-button v-if="row.level > 1" type="warning" size="small"
-              @click="addOrUpdatePermission(row, 'update')">编辑</el-button>
-            <el-popconfirm v-if="row.level > 1" :title="`你确定要删除${row.name}吗？`" @confirm="deletePermission(row.id)">
+            <el-button
+              v-if="row.level < 4"
+              type="primary"
+              size="small"
+              @click="addOrUpdatePermission(row, 'add')"
+            >
+              {{ row.level > 2 ? '添加功能' : '添加菜单' }}
+            </el-button>
+            <el-button
+              v-if="row.level > 1"
+              type="warning"
+              size="small"
+              @click="addOrUpdatePermission(row, 'update')"
+            >
+              编辑
+            </el-button>
+            <el-popconfirm
+              v-if="row.level > 1"
+              :title="`你确定要删除${row.name}吗？`"
+              @confirm="deletePermission(row.id)"
+            >
               <template #reference>
                 <el-button type="danger" size="small">删除</el-button>
               </template>
@@ -20,18 +36,21 @@
         </el-table-column>
       </el-table>
     </el-card>
-    <AddOrUpdatePermission ref="addOrUpdatePermissionRef" :currentPermission="currentPermission"></AddOrUpdatePermission>
+    <AddOrUpdatePermission
+      ref="addOrUpdatePermissionRef"
+      :currentPermission="currentPermission"
+    ></AddOrUpdatePermission>
   </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, reactive, ref } from 'vue';
-import { usePermissionStore } from '@/store/modules/permission';
-import { storeToRefs } from 'pinia';
-import { ResRolePermissionData } from '@/api/acl/role/type';
+import { onMounted, reactive, ref } from 'vue'
+import { usePermissionStore } from '@/store/modules/permission'
+import { storeToRefs } from 'pinia'
+import { ResRolePermissionData } from '@/api/acl/role/type'
 import AddOrUpdatePermission from './addOrUpdatePermission/index.vue'
 import permissionApi from '@/api/acl/permission/permission'
-import { ElMessage } from 'element-plus';
+import { ElMessage } from 'element-plus'
 // 获取菜单仓库
 const permissionStore = usePermissionStore()
 // 从仓库中取出菜单列表数据
@@ -67,7 +86,7 @@ const addOrUpdatePermission = (row: ResRolePermissionData, type: string) => {
   addOrUpdatePermissionRef.value.dialogFormVisible = true
 }
 // 点击删除菜单
-const deletePermission = async (id:number)=>{
+const deletePermission = async (id: number) => {
   await permissionApi.reqDeletePermission(id)
   permissionStore.getPremission()
   ElMessage.success('删除成功！')
