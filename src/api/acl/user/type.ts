@@ -57,10 +57,12 @@ export interface RecordsData {
   name?: string
   password?: string
   phone?: null | string
-  roleName: string
+  roleName?: string
   updateTime?: string
   username?: string
   remark?: string | null
+  logoUrl?: string
+  tmName?: string
 }
 // 添加或修改用户参数类型
 export interface ReqAddOrUpdateUser {

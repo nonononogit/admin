@@ -84,6 +84,7 @@ export const staticRoutes: RouteRecordRaw[] = [
   {
     path: '/product',
     name: 'product',
+    redirect:'/product/trademark',
     component: () => import('@/layout/index.vue'),
     meta: {
       title: '商品管理',
@@ -92,16 +93,6 @@ export const staticRoutes: RouteRecordRaw[] = [
     },
     children: [
       {
-        path: '/product/attr',
-        name: 'attr',
-        component: () => import('@/views/product/attr/index.vue'),
-        meta: {
-          title: '属性管理',
-          hidden: false,
-          icon: 'Tickets',
-        },
-      },
-      {
         path: '/product/trademark',
         name: 'trademark',
         component: () => import('@/views/product/trademark/index.vue'),
@@ -109,6 +100,16 @@ export const staticRoutes: RouteRecordRaw[] = [
           title: '品牌管理',
           hidden: false,
           icon: 'PriceTag',
+        },
+      },
+      {
+        path: '/product/attr',
+        name: 'attr',
+        component: () => import('@/views/product/attr/index.vue'),
+        meta: {
+          title: '属性管理',
+          hidden: false,
+          icon: 'Tickets',
         },
       },
       {

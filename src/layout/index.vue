@@ -6,6 +6,7 @@
         <el-menu
           :collapse="layoutSet.fold"
           background-color="linear-gradient(180deg, #efeaef, #dcdcf5 99%)"
+          :default-active="route.path"
         >
           <Menu :menuList="userStore.menu"></Menu>
         </el-menu>
@@ -25,9 +26,12 @@ import Content from './content/index.vue'
 import Tabbar from './tabbar/index.vue'
 import { useUserStore } from '@/store/modules/user'
 import { useLayoutSet } from '@/store/modules/setting'
+import { useRoute } from 'vue-router'
 // 从store中获取控制菜单折叠的变量
 const layoutSet = useLayoutSet()
 const userStore = useUserStore()
+// 获取当前路由对象
+const route = useRoute()
 </script>
 
 <style lang="scss" scoped>
