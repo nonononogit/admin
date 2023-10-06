@@ -1,12 +1,24 @@
 <template>
-  <el-dialog v-model="dialogFormVisible" :title="form.id ? '修改品牌' : '添加品牌'">
+  <el-dialog
+    v-model="dialogFormVisible"
+    :title="form.id ? '修改品牌' : '添加品牌'"
+  >
     <el-form :model="form" :rules="rules" ref="ruleFormRef">
       <el-form-item label="品牌名称" prop="tmName">
-        <el-input v-model="form.tmName" placeholder="请输入品牌名称" style="width: 60%;"/>
+        <el-input
+          v-model="form.tmName"
+          placeholder="请输入品牌名称"
+          style="width: 60%"
+        />
       </el-form-item>
       <el-form-item label="品牌logo" prop="logoUrl">
-        <el-upload class="avatar-uploader" action="/api/admin/product/fileUpload" :show-file-list="false"
-          :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
+        <el-upload
+          class="avatar-uploader"
+          action="/api/admin/product/fileUpload"
+          :show-file-list="false"
+          :on-success="handleAvatarSuccess"
+          :before-upload="beforeAvatarUpload"
+        >
           <img v-if="form.logoUrl" :src="form.logoUrl" class="avatar" />
           <el-icon v-else class="avatar-uploader-icon">
             <Plus />
@@ -26,18 +38,23 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref, watch } from 'vue';
+import { reactive, ref, watch } from 'vue'
 import { Plus } from '@element-plus/icons-vue'
-import { ElMessage, FormRules, type UploadProps, type FormInstance } from 'element-plus'
-import { RecordsData } from '@/api/acl/user/type';
+import {
+  ElMessage,
+  FormRules,
+  type UploadProps,
+  type FormInstance,
+} from 'element-plus'
+import { RecordsData } from '@/api/acl/user/type'
 import tmApi from '@/api/product/trademark/trademark'
-import { useTrademarkStore } from '@/store/modules/trademark';
+import { useTrademarkStore } from '@/store/modules/trademark'
 // 获取品牌仓库
 const trademarkStore = useTrademarkStore()
 // 初始化新增或者更新品牌数据
 const form = ref<RecordsData>({
   tmName: '',
-  logoUrl: ''
+  logoUrl: '',
 })
 // 控制dialog显隐的参考值
 const dialogFormVisible = ref(false)
@@ -48,7 +65,7 @@ const props = defineProps(['updateTm', 'limit'])
 // 图片上传成功的回调
 const handleAvatarSuccess: UploadProps['onSuccess'] = (
   _response,
-  uploadFile
+  uploadFile,
 ) => {
   form.value.logoUrl = URL.createObjectURL(uploadFile.raw!)
   ruleFormRef.value?.clearValidate('logoUrl')
@@ -81,7 +98,7 @@ const rules = reactive<FormRules>({
   logoUrl: [
     {
       required: true,
-      validator: validateLogoUrl
+      validator: validateLogoUrl,
     },
   ],
 })
@@ -93,21 +110,28 @@ const confirmAddOrUpdateTm = async (formEl: FormInstance | undefined) => {
       await tmApi.reqAddOrUpdateTm(form.value)
       ElMessage.success(form.value.id ? '修改品牌成功' : '添加品牌成功')
       dialogFormVisible.value = false
-      trademarkStore.getTrademarkLimitList(props.limit?.currentPage, props.limit?.pageSize)
+      trademarkStore.getTrademarkLimitList(
+        props.limit?.currentPage,
+        props.limit?.pageSize,
+      )
     }
   })
 }
 // 监听父组件传过来的数据
-watch(() => props.updateTm, () => {
-  if (props.updateTm?.id) {
-    form.value = { ...props.updateTm }
-  } else {
-    Object.assign(form.value, { tmName: '', logoUrl: '', id: 0 })
-  }
-  ruleFormRef.value?.clearValidate()
-}, { deep: true })
+watch(
+  () => props.updateTm,
+  () => {
+    if (props.updateTm?.id) {
+      form.value = { ...props.updateTm }
+    } else {
+      Object.assign(form.value, { tmName: '', logoUrl: '', id: 0 })
+    }
+    ruleFormRef.value?.clearValidate()
+  },
+  { deep: true },
+)
 defineExpose({
-  dialogFormVisible
+  dialogFormVisible,
 })
 </script>
 

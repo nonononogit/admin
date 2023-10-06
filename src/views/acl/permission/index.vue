@@ -1,7 +1,12 @@
 <template>
   <div class="permission-container">
     <el-card shadow="always" :body-style="{ padding: '20px' }">
-      <el-table v-loading="!permissionList.length" :data="permissionList" row-key="id" border>
+      <el-table
+        v-loading="!permissionList.length"
+        :data="permissionList"
+        row-key="id"
+        border
+      >
         <el-table-column prop="name" label="名称" />
         <el-table-column prop="code" label="权限值" />
         <el-table-column prop="updateTime" label="修改时间" />

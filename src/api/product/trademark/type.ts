@@ -8,6 +8,6 @@ export enum TrademarkApi {
   // 请求添加品牌数据
   ADDTM_URL = '/admin/product/baseTrademark/save',
   // 请求删除品牌
-  DELETETM_URL = '/admin/product/baseTrademark/remove'
+  DELETETM_URL = '/admin/product/baseTrademark/remove',
 }
 export interface TrademarkLimitData extends ResUserPageData<any> {}

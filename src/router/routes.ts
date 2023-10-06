@@ -84,7 +84,7 @@ export const staticRoutes: RouteRecordRaw[] = [
   {
     path: '/product',
     name: 'product',
-    redirect:'/product/trademark',
+    redirect: '/product/trademark',
     component: () => import('@/layout/index.vue'),
     meta: {
       title: '商品管理',
